@@ -13,6 +13,10 @@ const MyNavScreen = ({ navigation, banner }) => (
   <ScrollView>
     <SampleText>{banner}</SampleText>
     <Button
+      onPress={() => navigation.navigate('MainTab', { name: 'Jordan' })}
+      title="Open Home Screen"
+    />
+    <Button
       onPress={() => navigation.navigate('Profile', { name: 'Jordan' })}
       title="Open profile screen"
     />
@@ -21,7 +25,7 @@ const MyNavScreen = ({ navigation, banner }) => (
       title="Open notifications screen"
     />
     <Button
-      onPress={() => navigation.navigate('SettingsTab')}
+      onPress={() => navigation.navigate('SettingsTab', { name: 'Jordan' })}
       title="Go to settings tab"
     />
     <Button onPress={() => navigation.goBack(null)} title="Go back" />
@@ -29,7 +33,7 @@ const MyNavScreen = ({ navigation, banner }) => (
 );
 
 const MyHomeScreen = ({ navigation }) => (
-  <MyNavScreen banner="Home Screen" navigation={navigation} />
+  <MyNavScreen banner={`Home: ${navigation.state.params.name}`} navigation={navigation} />
 );
 
 const MyProfileScreen = ({ navigation }) => (
@@ -44,7 +48,7 @@ const MyNotificationsSettingsScreen = ({ navigation }) => (
 );
 
 const MySettingsScreen = ({ navigation }) => (
-  <MyNavScreen banner="Settings Screen" navigation={navigation} />
+  <MyNavScreen banner={`Settings: ${navigation.state.params.name}`} navigation={navigation} />
 );
 
 const TabNav = TabNavigator(
